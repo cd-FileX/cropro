@@ -2,6 +2,7 @@
 # License: GNU AGPL, version 3 or later; http://www.gnu.org/licenses/agpl.html
 
 from aqt.qt import *
+from aqt import Qt
 from aqt.utils import restoreGeom, saveGeom, disable_help_button, showText, openFolder
 from aqt.webview import AnkiWebView
 
@@ -106,7 +107,7 @@ class CroProSettingsDialog(QDialog):
     def _make_web_tab(self) -> QWidget:
         widget = QWidget()
         widget.setLayout(layout := QFormLayout())
-        
+
         length_layout = QHBoxLayout()
         length_layout.addWidget(QLabel("From"))
         length_layout.addWidget(self.sentence_min_length)
@@ -114,7 +115,7 @@ class CroProSettingsDialog(QDialog):
         length_layout.addWidget(self.sentence_max_length)
         length_layout.setAlignment(Qt.AlignmentFlag.AlignRight)
         layout.addRow("Sentence Length", length_layout)
-        
+
         field_name_group = QGroupBox("Field names")
         field_name_group.setCheckable(False)
         field_name_group.setLayout(names_layout := QFormLayout())
