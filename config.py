@@ -97,28 +97,6 @@ class CroProConfig(AddonConfigManager):
         self["sentence_max_length"] = new_value
 
     @property
-    def max_displayed_notes(self) -> int:
-        """
-        Minimum count of letters in the sentence for the card to be shown
-        """
-        return self["sentence_min_length"]
-
-    @sentence_min_length.setter
-    def sentence_min_length(self, new_value: int) -> None:
-        self["sentence_min_length"] = new_value
-
-    @property
-    def sentence_max_length(self) -> bool:
-        """
-        Maximum count of letters in the sentence for the card to be shown
-        """
-        return self["sentence_max_length"]
-
-    @sentence_max_length.setter
-    def sentence_max_length(self, new_value: int) -> None:
-        self["sentence_max_length"] = new_value
-
-    @property
     def notes_per_page(self) -> int:
         """
         How many search results to display on one page
