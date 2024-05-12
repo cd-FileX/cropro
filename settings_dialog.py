@@ -2,7 +2,6 @@
 # License: GNU AGPL, version 3 or later; http://www.gnu.org/licenses/agpl.html
 
 from aqt.qt import *
-from aqt import Qt
 from aqt.utils import restoreGeom, saveGeom, disable_help_button, showText, openFolder
 from aqt.webview import AnkiWebView
 
