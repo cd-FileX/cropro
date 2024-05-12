@@ -143,7 +143,7 @@ class CroProSettingsDialog(QDialog):
         names_layout.addRow(preset_layout)
         layout.addRow(field_name_group)
         return widget
-      
+
     def _make_hl_tab(self) -> QWidget:
         widget = QWidget()
         widget.setLayout(layout := QFormLayout())
