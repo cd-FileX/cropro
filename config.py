@@ -3,10 +3,46 @@
 
 from typing import Optional
 
-from .ajt_common.addon_config import AddonConfigManager
+from .ajt_common.addon_config import AddonConfigManager, ConfigSubViewBase
+
+
+class RemoteFieldsConfig(ConfigSubViewBase):
+    _view_key: str = "remote_fields"
+
+    @property
+    def sentence_kanji(self) -> str:
+        return self["sentence_kanji"]
+
+    @property
+    def sentence_furigana(self) -> str:
+        return self["sentence_furigana"]
+
+    @property
+    def sentence_eng(self) -> str:
+        return self["sentence_eng"]
+
+    @property
+    def sentence_audio(self) -> str:
+        return self["sentence_audio"]
+
+    @property
+    def image(self) -> str:
+        return self["image"]
+
+    @property
+    def notes(self) -> str:
+        return self["notes"]
 
 
 class CroProConfig(AddonConfigManager):
+    def __init__(self, default: bool = False):
+        super().__init__(default)
+        self._remote_fields = RemoteFieldsConfig(default)
+
+    @property
+    def remote_fields(self) -> RemoteFieldsConfig:
+        return self._remote_fields
+
     @property
     def exported_tag(self) -> Optional[str]:
         """
@@ -40,6 +76,28 @@ class CroProConfig(AddonConfigManager):
 
     @property
     def sentence_min_length(self) -> bool:
+        """
+        Minimum count of letters in the sentence for the card to be shown
+        """
+        return self["sentence_min_length"]
+
+    @sentence_min_length.setter
+    def sentence_min_length(self, new_value: int) -> None:
+        self["sentence_min_length"] = new_value
+
+    @property
+    def sentence_max_length(self) -> bool:
+        """
+        Maximum count of letters in the sentence for the card to be shown
+        """
+        return self["sentence_max_length"]
+
+    @sentence_max_length.setter
+    def sentence_max_length(self, new_value: int) -> None:
+        self["sentence_max_length"] = new_value
+
+    @property
+    def max_displayed_notes(self) -> int:
         """
         Minimum count of letters in the sentence for the card to be shown
         """
@@ -128,5 +186,6 @@ class CroProConfig(AddonConfigManager):
         Call the `add_cards_did_add_note` hook after a note is imported.
         """
         return self["call_add_cards_hook"]
+
 
 config = CroProConfig()
